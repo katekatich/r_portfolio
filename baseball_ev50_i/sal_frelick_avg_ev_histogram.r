@@ -3,18 +3,18 @@ library(baseballr)
 library(ggplot2)
 
 # Obtain the data from statcast via baseballr only once, save to .csv file.
+# Get entire 2025 season of data for Sal Frelick's plate appearances. 
+statcast_data_salfrelick <- statcast_search_batters(
+  start_date="2025-03-01",
+  end_date="2025-11-01",
+  batter = 686217
+)
+write_csv(statcast_data_salfrelick, 
+          'path/statcast_batters_salfrelick_2025.csv')
 
-#Get entire 2025 season of data for Sal Frelick's plate appearances.
-# statcast_data_salfrelick <- statcast_search_batters(
-#   start_date="2025-03-01",
-#   end_date="2025-11-01",
-#   batter = 686217
-# )
-# write_csv(statcast_data_salfrelick, 
-#           '/home/kate/r_scripts/blog/baseball_batters_ind_files/statcast_batters_salfrelick_2025.csv')
-
-statcast_data_salfrelick <- 
-  read_csv('/home/kate/r_scripts/blog/baseball_batters_ind_files/statcast_batters_salfrelick_2025.csv')
+# After obtaining data from Statcast initially, all sessions should import data from .csv.
+# statcast_data_salfrelick <- 
+#   read_csv('path/statcast_batters_salfrelick_2025.csv')
 
 # Reformat Sal's data as a tibble.
 salfrelick <- as_tibble(statcast_data_salfrelick)
